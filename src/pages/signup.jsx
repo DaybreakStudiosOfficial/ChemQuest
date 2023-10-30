@@ -202,6 +202,7 @@ async function submit(event, router) {
             } else {
                 setDatabase(data, 'users', auth.currentUser.uid)
             }
+            localStorage.setItem('userID', auth.currentUser.uid)
             router.push({
                 pathname: '/[userDashboard]',
                 query: { userDashboard: auth.currentUser.uid }
