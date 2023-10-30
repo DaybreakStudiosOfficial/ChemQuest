@@ -987,11 +987,11 @@ function BarGraph({ uid, name, type }) {
         getData()
     }, [])
     return (
-        <div>
+        <div style={{ width: '600px', marginBottom: '50px', border: '2px solid black' }}>
             {name != null && (
-                <p className={styles.header3}>{name}</p>
+                <p className={styles.header3} style={{ textTransform: 'capitalize' }}>{name}</p>
             )}
-            <Bar className={ styles.barGraph }
+            <Bar
                 data={{
                     labels: labels,
                     datasets: [
