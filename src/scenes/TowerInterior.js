@@ -95,6 +95,11 @@ class TowerInterior extends Phaser.Scene {
             music.destroy()
             this.scene.start('Labyrinth')
         })
+        const styleHelp = {
+            fontSize: '18px',
+            color: 'white',
+            fontFamily: 'Calibri'
+        }
         var helpBox = this.add.rectangle(this.cameras.main.displayWidth / 2, 75, 500, 50, 0x000000).setOrigin(0.5, 0.5).setScrollFactor(0, 0).setDepth(20)
         var helpText = this.add.text(this.cameras.main.displayWidth / 2, 75, 'Talk to Professor Gladys to continue.', styleHelp).setOrigin(0.5, 0.5).setScrollFactor(0, 0).setDepth(20)
         var gladysIndex = -1
@@ -104,11 +109,6 @@ class TowerInterior extends Phaser.Scene {
             "Of course, since you're so young, you'll have Kyle to guide you until you can fight on your own.",
             "Let's commence your first mission!"
         ]
-        const styleHelp = {
-            fontSize: '18px',
-            color: 'white',
-            fontFamily: 'Calibri'
-        }
         gladys.setInstructions(this.player, textBox, () => {
             textBox.setDialogueVisible(true)
             if (Phaser.Input.Keyboard.JustDown(spaceKey)) {
