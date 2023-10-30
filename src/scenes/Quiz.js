@@ -37,10 +37,9 @@ class Quiz extends Phaser.Scene {
         }
         music.addMarker(marker)
         music.play(marker)
-        var userID = 'example-UID'
-        if (auth.currentUser) {
-            userID = auth.currentUser.uid
-        }
+        const userRef = doc(database, 'dynamic', 'currentUser')
+        const userSnap = await getDoc(userRef)
+        const userID = userSnap.data().UID
         var allQuestions = new Map([
             ['acids-and-bases', [{
                 ID: 'question1',
