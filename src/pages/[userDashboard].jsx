@@ -27,6 +27,7 @@ import styles from '../styles/Dashboard.module.css'
 function Logout({ router }) {
     return (
         <button className={styles.logout} onClick={() => {
+            localStorage.removeItem('userID')
             signOut(auth).then(() => {
                 router.push('/login')
             })
