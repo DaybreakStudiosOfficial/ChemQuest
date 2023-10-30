@@ -176,7 +176,7 @@ async function submit(event, router) {
         warning.style.marginTop = '4px'
     }
     if (login) {
-        await setPersistence(auth, inMemoryPersistence)
+        setPersistence(auth, inMemoryPersistence)
             .then(() => {
                 if (code.style.visibility == 'visible' && !classCodes.includes(code.value)) {
                     login = false
