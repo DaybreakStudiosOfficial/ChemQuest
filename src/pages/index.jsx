@@ -18,7 +18,7 @@ function GetStartedButton({ color, size }) {
     return (
         <button
             className={style}
-            onClick={() => router.push('/signUp')}
+            onClick={() => router.push('/signup')}
             style={{ backgroundColor: color, color: textColor }}>Get started
         </button>
     )
