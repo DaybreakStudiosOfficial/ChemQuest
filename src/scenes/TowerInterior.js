@@ -95,6 +95,8 @@ class TowerInterior extends Phaser.Scene {
             music.destroy()
             this.scene.start('Labyrinth')
         })
+        var helpBox = this.add.rectangle(this.cameras.main.displayWidth / 2, 75, 500, 50, 0x000000).setOrigin(0.5, 0.5).setScrollFactor(0, 0).setDepth(20)
+        var helpText = this.add.text(this.cameras.main.displayWidth / 2, 75, 'Talk to Professor Gladys to continue.', styleHelp).setOrigin(0.5, 0.5).setScrollFactor(0, 0).setDepth(20)
         var gladysIndex = -1
         var gladysDialogue = [
             "Welcome, you must be my new protege! My name is Gladys, and I will be your instructor for the year.",
@@ -114,8 +116,7 @@ class TowerInterior extends Phaser.Scene {
                     gladysIndex++
                 }
                 if (gladysIndex + 1 == gladysDialogue.length) {
-                    var helpBox = this.add.rectangle(this.cameras.main.displayWidth / 2, 75, 500, 50, 0x000000).setOrigin(0.5, 0.5).setScrollFactor(0, 0).setDepth(20)
-                    var helpText = this.add.text(this.cameras.main.displayWidth / 2, 75, 'Enter the Labyrinth through the portal.', styleHelp).setOrigin(0.5, 0.5).setScrollFactor(0, 0).setDepth(20)
+                    helpText.setText('Enter the Labyrinth through the portal')
                 }
             }
             textBox.on('pointerup', () => {
