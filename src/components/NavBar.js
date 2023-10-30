@@ -35,7 +35,6 @@ const NavBar = () => {
         const stored = localStorage.getItem('userID')
         setID(stored)
     }, [])
-    console.log(ID)
     if (ID) {
         return (
             <div className={styles.navBar}>
