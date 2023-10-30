@@ -37,9 +37,7 @@ class Quiz extends Phaser.Scene {
         }
         music.addMarker(marker)
         music.play(marker)
-        const userRef = doc(database, 'dynamic', 'currentUser')
-        const userSnap = await getDoc(userRef)
-        const userID = userSnap.data().UID
+        var userID = localStorage.getItem('userID')
         var allQuestions = new Map([
             ['acids-and-bases', [{
                 ID: 'question1',
@@ -759,14 +757,22 @@ class Quiz extends Phaser.Scene {
                 fontSize: '18px',
                 fontWeight: 'bold',
                 fontFamily: 'Calibri',
+                textTransform: 'capitalize',
+                wordWrap: { width: (this.cameras.main.displayWidth / 2) - 125, useAdvancedWrap: true }
+            }
+            const styleCorrect = {
+                fontSize: '18px',
+                fontWeight: 'bold',
+                fontFamily: 'Calibri',
                 textTransform: 'capitalize'
             }
             const styleQuestion = {
                 fontSize: '28px',
                 fontWeight: 'bold',
-                fontFamily: 'Calibri'
+                fontFamily: 'Calibri',
+                textAlign: 'center',
+                wordWrap: { width: this.cameras.main.displayWidth - 50, useAdvancedWrap: true }
             }
-
             // generate graphics
             var answerBoxList = []
             var question = this.add.text(this.cameras.main.displayWidth / 2, 200, questionText, styleQuestion).setScrollFactor(0, 0).setOrigin(0.5, 0)
@@ -792,7 +798,7 @@ class Quiz extends Phaser.Scene {
             var answerD = this.add.text((this.cameras.main.displayWidth / 2) + 50, this.cameras.main.displayHeight - 103, answerTextD, styleAnswers).setScrollFactor(0, 0).setOrigin(0, 0)
             answerBoxList.push([boxD, answerD])
 
-            var correctAnswer = this.add.text(this.cameras.main.displayWidth / 2, 48, 'Incorrect! Review the problem in Dashboard.', styleAnswers).setScrollFactor(0, 0).setOrigin(0.5, 0)
+            var correctAnswer = this.add.text(this.cameras.main.displayWidth / 2, 48, 'Incorrect! Review the problem in Dashboard.', styleCorrect).setScrollFactor(0, 0).setOrigin(0.5, 0)
             correctAnswer.setVisible(false)
 
             var incorrect = []

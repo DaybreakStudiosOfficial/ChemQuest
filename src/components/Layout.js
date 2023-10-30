@@ -7,6 +7,7 @@ export default function Layout({ title, children }) {
         <div>
             <Head>
                 <title>{title ? title + " | " : ""} ChemQuest</title>
+                <link rel="icon" href="/logo.ico" />
             </Head>
             <NavBar />
             <div className={styles.main}>

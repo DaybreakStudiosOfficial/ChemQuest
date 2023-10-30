@@ -27,6 +27,7 @@ import styles from '../styles/Dashboard.module.css'
 function Logout({ router }) {
     return (
         <button className={styles.logout} onClick={() => {
+            localStorage.removeItem('userID')
             signOut(auth).then(() => {
                 router.push('/login')
             })
@@ -1260,6 +1261,11 @@ export async function getStaticProps(context) {
 
 function Dashboard(props) {
     const router = useRouter()
+    const [ID, setID] = useState('')
+    useEffect(() => {
+        const stored = localStorage.setItem('userID', props.UID)
+        setID(stored)
+    }, [])
     return (
         <div style={{backgroundColor: '#FFFFFF'}}>
             <Layout title={'Dashboard'}>
