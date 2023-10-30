@@ -323,7 +323,9 @@ class GenerateRoom {
 
             // add two different timer events
             var energyPulse = 2000
-            var enemyBeam = this.scene.sound.add('enemyBeam')
+            var enemyBeam = this.scene.sound.add('enemyBeam', {
+                instances: 10
+            })
             var timer = this.scene.time.addEvent({
                 delay: energyPulse,
                 callback: () => {
