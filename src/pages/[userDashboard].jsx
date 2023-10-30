@@ -1235,11 +1235,6 @@ export async function getServerSideProps(context) {
 
 function Dashboard(props) {
     const router = useRouter()
-    const [ID, setID] = useState('')
-    useEffect(() => {
-        const stored = localStorage.setItem('userID', props.UID)
-        setID(stored)
-    }, [])
     return (
         <div style={{backgroundColor: '#FFFFFF'}}>
             <Layout title={'Dashboard'}>
