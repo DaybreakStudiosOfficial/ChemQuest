@@ -1,0 +1,104 @@
+.title {
+    position: absolute;
+    top: 25vh;
+    font-size: 64px;
+    color: white;
+}
+
+.tagline {
+    max-width: 600px;
+    position: absolute;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+
+.getStartedLarge {
+    height: 64px;
+    border: none;
+    border-radius: 50px;
+    padding-left: 32px;
+    padding-right: 32px;
+    color: white;
+    font-size: 22px;
+    font-weight: 500;
+    position: absolute;
+    top: 475px;
+}
+
+.getStartedSmall {
+    width: 155px;
+    height: 42px;
+    border: none;
+    border-radius: 45px;
+    padding-left: 28px;
+    padding-right: 28px;
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.head1 {
+    font-size: 48px;
+    text-align: left;
+    margin: 0;
+}
+
+.mainSection {
+    min-height: 600px;
+    background-color: #03012C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.section {
+    min-height: 800px;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.description {
+    min-height: 800px;
+    width: 33%;
+    padding: 5%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+}
+
+.list {
+    width: 100%;
+    display: block;
+    position: relative;
+    top: 0px;
+    list-style-position: inside;
+    padding: 0;
+    text-align: left;
+    line-height: 1.5;
+    font-size: 20px;
+}
+
+.learnMore {
+    width: 100%;
+    text-decoration: none;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    margin-top: -10px;
+}
+
+.mainImage {
+    display: block;
+    margin: auto;
+    opacity: 0.5;
+    filter: brightness(50%);
+}
