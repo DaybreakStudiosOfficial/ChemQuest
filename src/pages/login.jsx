@@ -29,6 +29,7 @@ async function submit(event, router) {
                     })
                 auth.onAuthStateChanged((user) => {
                     if (user) {
+                        localStorage.setItem('userID', auth.currentUser.uid)
                         router.push({
                             pathname: '/[userDashboard]',
                             query: { userDashboard: auth.currentUser.uid }
@@ -37,11 +38,11 @@ async function submit(event, router) {
                 })
             }
         })
-        showIncorrect.style.visibility = 'visible'
     }
-    getData('users')
-    getData('educators')
-    getData('students')
+    await getData('users')
+    await getData('educators')
+    await getData('students')
+    showIncorrect.style.visibility = 'visible'
 }
 
 const Login = () => {
