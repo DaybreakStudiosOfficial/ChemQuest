@@ -1,7 +1,7 @@
 import styles from '../styles/NavBar.module.css'
 import { useRouter } from 'next/navigation'
 import { auth, database } from '../components/configFirebase'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 
 function NavButton({ text, location }) {
@@ -28,20 +28,15 @@ function Dashboard({ uid, router }) {
     )
 }
 
-function verifyUser() {
-    const router = useRouter()
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            return true
-        } else {
-            return false
-        }
-    })
-}
-
 const NavBar = () => {
     const router = useRouter()
-    if (auth.currentUser) {
+    const [ID, setID] = useState('')
+    useEffect(() => {
+        const stored = localStorage.getItem('userID')
+        setID(stored)
+    }, [])
+    console.log(ID)
+    if (ID) {
         return (
             <div className={styles.navBar}>
                 <div>
@@ -53,7 +48,7 @@ const NavBar = () => {
                 </div>
                 <div>
                     <NavButton text='Play game' location='/game' />
-                    <Dashboard uid={auth.currentUser.uid} router={ router } />
+                    <Dashboard uid={ID} router={router} />
                 </div>
             </div>
         )
