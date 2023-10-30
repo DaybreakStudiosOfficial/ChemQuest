@@ -773,7 +773,6 @@ class Quiz extends Phaser.Scene {
                 textAlign: 'center',
                 wordWrap: { width: this.cameras.main.displayWidth - 50, useAdvancedWrap: true }
             }
-            console.log(userID)
             // generate graphics
             var answerBoxList = []
             var question = this.add.text(this.cameras.main.displayWidth / 2, 200, questionText, styleQuestion).setScrollFactor(0, 0).setOrigin(0.5, 0)
