@@ -987,7 +987,7 @@ function BarGraph({ uid, name, type }) {
         getData()
     }, [])
     return (
-        <div style={{ width: '600px', marginBottom: '50px', border: '2px solid black' }}>
+        <div style={{ width: '600px', marginBottom: '50px' }}>
             {name != null && (
                 <p className={styles.header3} style={{ textTransform: 'capitalize' }}>{name}</p>
             )}
