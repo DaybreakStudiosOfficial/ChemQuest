@@ -28,20 +28,12 @@ function Dashboard({ uid, router }) {
     )
 }
 
-function verifyUser() {
-    const router = useRouter()
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            return true
-        } else {
-            return false
-        }
-    })
-}
-
 const NavBar = () => {
     const router = useRouter()
-    if (auth.currentUser) {
+    const docRef = doc(database, 'dynamic', 'currentUser')
+    const docSnap = await getDoc(docRef)
+    const userID = docSnap.data().UID
+    if (userID != 'none') {
         return (
             <div className={styles.navBar}>
                 <div>
@@ -53,7 +45,7 @@ const NavBar = () => {
                 </div>
                 <div>
                     <NavButton text='Play game' location='/game' />
-                    <Dashboard uid={auth.currentUser.uid} router={ router } />
+                    <Dashboard uid={userID} router={ router } />
                 </div>
             </div>
         )

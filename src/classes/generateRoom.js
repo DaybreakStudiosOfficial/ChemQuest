@@ -221,10 +221,9 @@ class GenerateRoom {
         })
     }
     async setSprites(index, player) {
-        var userID = ''
-        if (auth.currentUser) {
-            userID = auth.currentUser.uid
-        }
+        const docRef = doc(database, 'dynamic', 'currentUser')
+        const docSnap = await getDoc(docRef)
+        const userID = docSnap.data().UID
         if (index < 0) {
             var statueX = (this.roomX + this.wallWidth + 3) * this.zoom * 4
             var statueY = (this.roomY + this.randomHeight) * this.zoom * 4
