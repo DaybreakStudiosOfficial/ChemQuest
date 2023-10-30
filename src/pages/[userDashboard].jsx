@@ -1185,7 +1185,7 @@ function Statistics({ type, uid }) {
     }
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     const userID = context.params.userDashboard
     var userData = null
     const q1 = query(collection(database, 'educators'))
