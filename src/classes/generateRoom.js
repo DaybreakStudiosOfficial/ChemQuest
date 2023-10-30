@@ -221,10 +221,7 @@ class GenerateRoom {
         })
     }
     async setSprites(index, player) {
-        var userID = ''
-        if (auth.currentUser) {
-            userID = auth.currentUser.uid
-        }
+        var userID = localStorage.getItem('userID')
         if (index < 0) {
             var statueX = (this.roomX + this.wallWidth + 3) * this.zoom * 4
             var statueY = (this.roomY + this.randomHeight) * this.zoom * 4
