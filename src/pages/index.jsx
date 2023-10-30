@@ -88,7 +88,7 @@ export default function Home() {
         <Layout title={"Home"}>
             {/*Main section*/}
             <section className={styles.mainSection}>
-                <img src='/middletownImage4.png' className={styles.mainImage} />
+                <img src='./middletownImage4.png' className={styles.mainImage} />
                 <h1 className={styles.title}>ChemQuest</h1>
                 <p className={styles.tagline}>Learn the foundations of chemistry through engaging gameplay and challenging practice problems.</p>
                 <GetStartedButton color={"#6320EE"} size={"large"} />
