@@ -1186,33 +1186,7 @@ function Statistics({ type, uid }) {
     }
 }
 
-export async function getStaticPaths() {
-    let paramList = []
-    const educatorsQuery = await getDocs(collection(database, 'educators'))
-    educatorsQuery.forEach((document) => {
-        paramList.push({
-            params: {userDashboard: document.id}
-        })
-    })
-    const studentsQuery = await getDocs(collection(database, 'students'))
-    studentsQuery.forEach((document) => {
-        paramList.push({
-            params: {userDashboard: document.id}
-        })
-    })
-    const usersQuery = await getDocs(collection(database, 'users'))
-    usersQuery.forEach((document) => {
-        paramList.push({
-            params: {userDashboard: document.id}
-        })
-    })
-    return {
-        paths: paramList,
-        fallback: false
-    }
-}
-
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
     const userID = context.params.userDashboard
     var userData = null
     const q1 = query(collection(database, 'educators'))
