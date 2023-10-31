@@ -65,7 +65,7 @@ class Quiz extends Phaser.Scene {
                 TOPIC: 'acids-and-bases',
                 SUBTOPIC: 'common-acids-and-bases',
                 QUESTION: 'What is the formula for sulfurous acid?',
-                ANSWERS: ['H2SO4', 'H2S03', 'H2SO', 'SO3'],
+                ANSWERS: ['H2SO4', 'H2SO3', 'H2SO', 'SO3'],
                 ANSWER: 'H2SO3'
             }, {
                 ID: 'question1',
