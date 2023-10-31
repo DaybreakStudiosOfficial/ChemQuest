@@ -824,43 +824,47 @@ class Quiz extends Phaser.Scene {
                         answerTextD = questions[index].ANSWERS[3]
                         answerD.setText(answerTextD)
                         correct = questions[index].ANSWER
-                        const updateCorrect = async () => {
-                            const docRef = doc(database, userType, userID)
-                            await updateDoc(docRef, {
-                                QRIGHT: increment(1)
-                            })
+                        if (userType != 'educators') {
+                            const updateCorrect = async () => {
+                                const docRef = doc(database, userType, userID)
+                                await updateDoc(docRef, {
+                                    QRIGHT: increment(1)
+                                })
+                            }
+                            updateCorrect()
                         }
-                        updateCorrect()
                     } else {
                         correctAnswer.setVisible(true)
-                        const updateIncorrect = async () => {
-                            var ref = '' + questions[index].SUBTOPIC + '.' + questions[index].ID
-                            const docRef = doc(database, userType, userID, 'incorrect-questions', questions[index].TOPIC)
-                            const docSnap = await getDoc(docRef)
-                            if (docSnap.data()[questions[index].SUBTOPIC].hasOwnProperty([questions[index].ID])) {
-                                await updateDoc(docRef, {
-                                    [ref]: answerBox[1].text
-                                })
-                            } else {
-                                await updateDoc(docRef, {
-                                    [questions[index].SUBTOPIC]: {
-                                        [questions[index].ID]: answerBox[1].text
-                                    }
-                                })
+                        if (userType != 'educators') {
+                            const updateIncorrect = async () => {
+                                var ref = '' + questions[index].SUBTOPIC + '.' + questions[index].ID
+                                const docRef = doc(database, userType, userID, 'incorrect-questions', questions[index].TOPIC)
+                                const docSnap = await getDoc(docRef)
+                                if (docSnap.data()[questions[index].SUBTOPIC].hasOwnProperty([questions[index].ID])) {
+                                    await updateDoc(docRef, {
+                                        [ref]: answerBox[1].text
+                                    })
+                                } else {
+                                    await updateDoc(docRef, {
+                                        [questions[index].SUBTOPIC]: {
+                                            [questions[index].ID]: answerBox[1].text
+                                        }
+                                    })
+                                }
+                                if (firstTry) {
+                                    const docRef2 = doc(database, userType, userID)
+                                    await updateDoc(docRef2, {
+                                        QWRONG: increment(1)
+                                    })
+                                    await updateDoc(docRef, {
+                                        QWRONG: increment(1),
+                                        QRIGHT: increment(-1)
+                                    })
+                                    firstTry = false
+                                }
                             }
-                            if (firstTry) {
-                                const docRef2 = doc(database, userType, userID)
-                                await updateDoc(docRef2, {
-                                    QWRONG: increment(1)
-                                })
-                                await updateDoc(docRef, {
-                                    QWRONG: increment(1),
-                                    QRIGHT: increment(-1)
-                                })
-                                firstTry = false
-                            }
+                            updateIncorrect()
                         }
-                        updateIncorrect()
                     }
                     index = index + 1
                 })
