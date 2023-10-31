@@ -743,7 +743,7 @@ class Quiz extends Phaser.Scene {
             fontFamily: 'Calibri'
         }
         var energyText = this.add.text(this.cameras.main.displayWidth - 120, 42, Player.energy, styleEnergy).setScrollFactor(0, 0)
-        var energy = this.add.image(this.cameras.main.displayWidth - 150, 50, 'energy').setScrollFactor(0, 0).setScale(zoom)
+        var energy = this.add.image(this.cameras.main.displayWidth - 150, 50, 'energy', 1).setScrollFactor(0, 0).setScale(zoom)
  
         // get question data
         if (releasedTopics.length > 0) {
@@ -802,9 +802,11 @@ class Quiz extends Phaser.Scene {
             correctAnswer.setVisible(false)
 
             var incorrect = []
+            var firstTry = true
             answerBoxList.forEach((answerBox) => {
                 answerBox[0].on('pointerdown', function (pointer) {
                     if (correct == answerBox[1].text) {
+                        firstTry = true
                         Player.energy = Player.energy + 2
                         energyText.setText(Player.energy)
                         correctAnswer.setVisible(false)
@@ -837,21 +839,26 @@ class Quiz extends Phaser.Scene {
                             const docSnap = await getDoc(docRef)
                             if (docSnap.data()[questions[index].SUBTOPIC].hasOwnProperty([questions[index].ID])) {
                                 await updateDoc(docRef, {
-                                    QWRONG: increment(1),
                                     [ref]: answerBox[1].text
                                 })
                             } else {
                                 await updateDoc(docRef, {
-                                    QWRONG: increment(1),
                                     [questions[index].SUBTOPIC]: {
                                         [questions[index].ID]: answerBox[1].text
                                     }
                                 })
                             }
-                            const docRef2 = doc(database, userType, userID)
-                            await updateDoc(docRef2, {
-                                QWRONG: increment(1)
-                            })
+                            if (firstTry) {
+                                const docRef2 = doc(database, userType, userID)
+                                await updateDoc(docRef2, {
+                                    QWRONG: increment(1)
+                                })
+                                await updateDoc(docRef, {
+                                    QWRONG: increment(1),
+                                    QRIGHT: increment(-1)
+                                })
+                                firstTry = false
+                            }
                         }
                         updateIncorrect()
                     }
