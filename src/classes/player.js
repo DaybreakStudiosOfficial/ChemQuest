@@ -101,7 +101,7 @@ class Player extends Phaser.Physics.Matter.Sprite {
         var playerBeam = this.scene.sound.add('playerBeam')
         if (Player.energy > 3 && Phaser.Input.Keyboard.JustDown(this.spaceKey)) {
             Player.energy = Player.energy - 3
-            enemyBeam.play()
+            playerBeam.play()
             if (this.arrowKeys.down.isDown) {
                 var direction = 1
                 var energy = this.scene.matter.add.sprite(this.x, this.y + 48, 'energy', 1).setScale(this.zoom)
