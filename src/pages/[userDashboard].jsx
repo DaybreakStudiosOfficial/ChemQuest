@@ -184,6 +184,19 @@ function ClassRanking({ type, uid }) {
 }
 
 function Class({ type, uid }) {
+    const [hasCode, setHasCode] = useState(false)
+    const [placement, setPlacement] = useState('new-class')
+    const ifHasCode = async (event) => {
+        const docRef = doc(database, 'educators', uid)
+        const docSnap = await getDoc(docRef)
+        if (docSnap.data().CLASS != '') {
+            setHasCode(true)
+            setPlacement(docSnap.data().CLASS)
+        }
+    }
+    useEffect(() => {
+        ifHasCode()
+    }, [])
     const [createCode, setCreateCode] = useState(false)
     const createClass = async (event) => {
         var code = event.currentTarget.previousElementSibling.value
@@ -219,7 +232,7 @@ function Class({ type, uid }) {
                 {createCode == true && (
                     <form onSubmit={(event) => event.preventDefault()}>
                         <p className={styles.header2}>Set a class code: </p>
-                        <input type='text' placeholder='new-class' className={styles.setCode} />
+                        <input type='text' placeholder={placement} className={styles.setCode} disabled={hasCode} />
                         <input type='submit' value='Save' className={styles.setCode}
                             onClick={(e) => createClass(e)}
                             style={{ cursor: 'pointer' }} />
