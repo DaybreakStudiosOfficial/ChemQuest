@@ -18,23 +18,3 @@ body {
 button {
     cursor: pointer;
 }
-* {
-    box-sizing: border-box;
-    font-family: var(--font-inter);
-}
-
-html, body {
-    margin: 0;
-    padding: 0;
-    background-color: #0C0C2B;
-}
-
-body {
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-}
-
-button {
-    cursor: pointer;
-}
